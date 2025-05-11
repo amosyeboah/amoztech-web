@@ -43,8 +43,8 @@ const ContactSection: React.FC = () => {
                   <div>
                     <h4 className="font-bold text-gray-900 dark:text-white mb-1">Visit Us</h4>
                     <p className="text-gray-600 dark:text-gray-300">
-                      123 Design Street<br />
-                      San Francisco, CA 94107
+                      Tanoso Business Avenue<br />
+                      Kumasi, Ghana
                     </p>
                   </div>
                 </div>
@@ -56,8 +56,8 @@ const ContactSection: React.FC = () => {
                   <div>
                     <h4 className="font-bold text-gray-900 dark:text-white mb-1">Email Us</h4>
                     <p className="text-gray-600 dark:text-gray-300">
-                      hello@pixelperfect.design<br />
-                      careers@pixelperfect.design
+                      amosfrimpong56@gmail<br />
+                      support@amoztech.com
                     </p>
                   </div>
                 </div>
@@ -69,8 +69,8 @@ const ContactSection: React.FC = () => {
                   <div>
                     <h4 className="font-bold text-gray-900 dark:text-white mb-1">Call Us</h4>
                     <p className="text-gray-600 dark:text-gray-300">
-                      +1 (555) 123-4567<br />
-                      Mon-Fri, 9am-6pm PST
+                      +233 (0) 240-8570-85<br />
+                      Mon-Fri, 9am-6pm GMT
                     </p>
                   </div>
                 </div>

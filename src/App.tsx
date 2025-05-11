@@ -26,11 +26,11 @@ function App() {
           {/* <HeroSection /> */}
           <HeroSection2 />
           <ServicesSection />
-          <PricingSection />
           <IndustriesSection />
           <PortfolioSection />
+          <PricingSection />
           <AboutSection />
-          <TestimonialsSection />
+          {/* <TestimonialsSection /> */}
           {/* WhatsApp floating button */}
           <WhatsAppButton phoneNumber="+233 240 8570 85" message="Hi! I'd like to discuss your services." />
           <ContactSection />

@@ -1,8 +1,51 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import heroLocalImage from '../assets/images/slide-ted3.png';
+import heroLocalImage2 from '../assets/images/slide-nl.png';
+import heroLocalImage3 from '../assets/images/ghana-website-design-companies.png';
+import heroLocalImage4 from '../assets/images/website-design-companies-in-ghana.png';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../components/Button';
 import AnimatedReveal from '../components/AnimatedReveal';
-import { ChevronLeft, ChevronRight, ArrowRight, Code, Layers, Zap } from 'lucide-react';
+import AnimatedBackground3D from '../components/AnimatedBackground3D';
+import { ChevronLeft, ChevronRight, ArrowRight, Code, Layers, Zap, Globe } from 'lucide-react';
+
+// Animation for counting up numbers
+const CountAnimation = ({ value }: { value: string }) => {
+  const [displayValue, setDisplayValue] = useState('');
+  const numericPart = value.replace(/[^0-9.]/g, '');
+  const suffix = value.replace(numericPart, '');
+  
+  useEffect(() => {
+    let start = 0;
+    const end = parseInt(numericPart, 10);
+    
+    // If the value is not a pure number (has % or + etc.)
+    if (isNaN(end)) {
+      setDisplayValue(value);
+      return;
+    }
+    
+    // Don't animate if the number is too large
+    if (end > 1000) {
+      setDisplayValue(value);
+      return;
+    }
+    
+    // Get animation duration based on the size of the number
+    const duration = Math.floor(2000 / end);
+    let timer = setInterval(() => {
+      start += 1;
+      setDisplayValue(`${start}${suffix}`);
+      if (start === end) clearInterval(timer);
+    }, duration);
+    
+    return () => {
+      clearInterval(timer);
+    };
+  }, [value, numericPart, suffix]);
+  
+  return <>{displayValue}</>;
+};
 
 const HeroSection2: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -15,14 +58,14 @@ const HeroSection2: React.FC = () => {
       title: "Crafting Digital <span class='text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>Experiences</span>",
       subtitle: "We build websites that convert visitors into customers",
       description: "Our team of designers and developers work together to create beautiful, functional websites that drive results for your business.",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: heroLocalImage, // ✅ Local image used here
       cta: "Start Your Project",
       secondaryCta: "View Our Work",
       icon: <Code className="w-12 h-12 text-indigo-500" />,
       stats: [
         { value: "98%", label: "Client Satisfaction" },
-        { value: "250+", label: "Projects Delivered" },
-        { value: "15+", label: "Industry Awards" }
+        { value: "50+", label: "Projects Delivered" },
+        { value: "15+", label: "Industry Recommendations" }
       ]
     },
     {
@@ -30,14 +73,14 @@ const HeroSection2: React.FC = () => {
       title: "Strategic <span class='text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500'>Solutions</span> for Growth",
       subtitle: "Data-driven design that delivers measurable results",
       description: "We combine beautiful design with strategic thinking to create websites that not only look great but also perform exceptionally well.",
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: heroLocalImage2,
       cta: "Grow Your Business",
       secondaryCta: "Our Approach",
       icon: <Layers className="w-12 h-12 text-teal-500" />,
       stats: [
         { value: "320%", label: "Avg. ROI" },
-        { value: "75%", label: "Conversion Increase" },
-        { value: "24/7", label: "Support" }
+        { value: "75%", label: "Conversion Increase" }
+        // { value: "24/7", label: "Support" }
       ]
     },
     {
@@ -45,7 +88,7 @@ const HeroSection2: React.FC = () => {
       title: "Innovative <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-500 to-red-500'>Technology</span> Solutions",
       subtitle: "Cutting-edge development for modern businesses",
       description: "We leverage the latest technologies to build fast, secure, and scalable digital solutions that help your business stay ahead of the competition.",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: heroLocalImage3,
       cta: "Explore Technologies",
       secondaryCta: "Our Process",
       icon: <Zap className="w-12 h-12 text-orange-500" />,
@@ -53,6 +96,21 @@ const HeroSection2: React.FC = () => {
         { value: "99.9%", label: "Uptime" },
         { value: "0.8s", label: "Avg. Load Time" },
         { value: "100%", label: "Mobile Optimized" }
+      ]
+    },
+    {
+      id: 4,
+      title: "Global <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-500'>Reach</span> & Local Impact",
+      subtitle: "Expand your business across borders with localized solutions",
+      description: "We help businesses of all sizes reach global audiences while maintaining cultural relevance and compliance with local regulations and best practices.",
+      image: heroLocalImage4,
+      cta: "Go Global Now",
+      secondaryCta: "Learn More",
+      icon: <Globe className="w-12 h-12 text-blue-500" />,
+      stats: [
+        { value: "7+", label: "Countries Served" },
+        { value: "12", label: "Languages" },
+        { value: "30%", label: "Int'l Client Growth" }
       ]
     }
   ];
@@ -114,72 +172,155 @@ const HeroSection2: React.FC = () => {
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 min-h-[80vh]">
           {/* Content side */}
-          <div className="w-full lg:w-1/2 order-2 lg:order-1">
-            <AnimatePresence mode="wait">
-              {slides.map((slide, index) => (
-                currentSlide === index && (
-                  <motion.div 
-                    key={slide.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
-                    className="space-y-6"
-                  >
+          <div className="w-full lg:w-1/2 order-2 lg:order-1 relative">
+            {/* 3D animated background */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+              <AnimatedBackground3D className="opacity-70" />
+            </div>
+            
+            {/* Content overlay with slight backdrop blur for better readability */}
+            <div className="relative z-10 backdrop-blur-sm bg-white/5 dark:bg-gray-900/5 rounded-3xl p-8 h-full">
+              <AnimatePresence mode="wait">
+                {slides.map((slide, index) => (
+                  currentSlide === index && (
+                    <motion.div 
+                      key={slide.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5 }}
+                      className="space-y-6"
+                    >
                     <AnimatedReveal direction="up">
-                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gray-100 dark:bg-gray-800 mb-6">
+                      <motion.div 
+                        className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gray-100 dark:bg-gray-800 mb-6"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
+                      >
                         {slide.icon}
-                      </div>
+                      </motion.div>
                     </AnimatedReveal>
                     
                     <AnimatedReveal direction="up" delay={0.1}>
-                      <h1 
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white"
-                        dangerouslySetInnerHTML={{ __html: slide.title }}
-                      />
+                      <div className="overflow-hidden">
+                        <motion.h1 
+                          className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white"
+                          dangerouslySetInnerHTML={{ __html: slide.title }}
+                          initial={{ y: 100, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ 
+                            duration: 0.7, 
+                            type: "spring", 
+                            damping: 12,
+                            delay: 0.1
+                          }}
+                        />
+                      </div>
                     </AnimatedReveal>
                     
                     <AnimatedReveal direction="up" delay={0.2}>
-                      <p className="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300">
-                        {slide.subtitle}
-                      </p>
+                      <div className="overflow-hidden">
+                        <motion.p 
+                          className="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                        >
+                          {slide.subtitle.split('').map((char, index) => (
+                            <motion.span
+                              key={`${index}-${char}`}
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.3, delay: 0.4 + index * 0.02 }}
+                            >
+                              {char === ' ' ? '\u00A0' : char}
+                            </motion.span>
+                          ))}
+                        </motion.p>
+                      </div>
                     </AnimatedReveal>
                     
                     <AnimatedReveal direction="up" delay={0.3}>
-                      <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-xl">
+                      <motion.p 
+                        className="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-xl"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                      >
                         {slide.description}
-                      </p>
+                      </motion.p>
                     </AnimatedReveal>
                     
                     <AnimatedReveal direction="up" delay={0.4}>
-                      <div className="flex flex-wrap gap-4 mt-8">
-                        <Button size="lg">
-                          {slide.cta} <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
-                        <Button variant="outline" size="lg">
-                          {slide.secondaryCta}
-                        </Button>
-                      </div>
+                      <motion.div 
+                        className="flex flex-wrap gap-4 mt-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.8 }}
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        >
+                          <Button size="lg">
+                            {slide.cta} <ArrowRight className="ml-2 h-5 w-5" />
+                          </Button>
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        >
+                          <Button variant="outline" size="lg">
+                            {slide.secondaryCta}
+                          </Button>
+                        </motion.div>
+                      </motion.div>
                     </AnimatedReveal>
                     
                     <AnimatedReveal direction="up" delay={0.5}>
-                      <div className="grid grid-cols-3 gap-4 mt-12">
+                      <motion.div 
+                        className="grid grid-cols-3 gap-4 mt-12"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 1 }}
+                      >
                         {slide.stats.map((stat, statIndex) => (
-                          <div key={statIndex} className="text-center">
-                            <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                              {stat.value}
-                            </div>
-                            <div className="text-sm text-gray-600 dark:text-gray-400">
+                          <motion.div 
+                            key={statIndex} 
+                            className="text-center"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 1.1 + (statIndex * 0.1) }}
+                            whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                          >
+                            <motion.div 
+                              className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.5, delay: 1.2 + (statIndex * 0.1) }}
+                            >
+                              <CountAnimation value={stat.value} />
+                            </motion.div>
+                            <motion.div 
+                              className="text-sm text-gray-600 dark:text-gray-400"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.5, delay: 1.3 + (statIndex * 0.1) }}
+                            >
                               {stat.label}
-                            </div>
-                          </div>
+                            </motion.div>
+                          </motion.div>
                         ))}
-                      </div>
+                      </motion.div>
                     </AnimatedReveal>
                   </motion.div>
                 )
               ))}
-            </AnimatePresence>
+              </AnimatePresence>
+            </div>
           </div>
           
           {/* Image side */}
@@ -192,10 +333,13 @@ const HeroSection2: React.FC = () => {
                     currentSlide === index ? 'opacity-100' : 'opacity-0'
                   }`}
                 >
-                  <img 
+                  <motion.img 
                     src={slide.image} 
                     alt={`Slide ${index + 1}`}
                     className="w-full h-full object-cover"
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
                   />
                   
                   {/* Overlay gradient */}

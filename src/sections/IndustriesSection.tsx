@@ -70,7 +70,7 @@ const IndustriesSection: React.FC = () => {
 
     let isScrolling = false;
     let scrollDirection = 1; // 1 for right, -1 for left
-    let scrollSpeed = 0.5; // pixels per frame
+    let scrollSpeed = 40.0; // pixels per frame
     let lastTimestamp = 0;
     let isPaused = false;
     

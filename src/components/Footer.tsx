@@ -16,7 +16,9 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4 mt-6">
               <a 
-                href="#" 
+                href="https://x.com/Amos_Yeboah85" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
                 aria-label="Twitter"
               >
@@ -30,7 +32,9 @@ const Footer: React.FC = () => {
                 <Instagram size={20} />
               </a>
               <a 
-                href="#" 
+                href="https://www.linkedin.com/in/amos-frimpong" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
                 aria-label="LinkedIn"
               >
@@ -89,14 +93,15 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Contact Us</h3>
             <address className="not-italic">
               <p className="text-gray-600 dark:text-gray-400 mb-3">
-                123 Design Street<br />
-                San Francisco, CA 94107
+                Tanoso Business Avenue<br />
+                Avenue Street
+                Kumasi, Ghana
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-3">
-                hello@pixelperfect.design
+                support@amoztech.com
               </p>
               <p className="text-gray-600 dark:text-gray-400">
-                +1 (555) 123-4567
+                +233 (0) 240-8570-85
               </p>
             </address>
           </div>
@@ -105,7 +110,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-200 dark:border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              &copy; {currentYear} PixelPerfect Design Studio. All rights reserved.
+              &copy; {currentYear} amozTech Design Studio. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0">
               <ul className="flex space-x-6 text-sm">

@@ -13,17 +13,18 @@ interface PricingPlan {
   name: string;
   description: string;
   price: {
-    monthly: number;
-    yearly: number;
+    ghana: number;
+    international: number;
   };
   featured: boolean;
   features: PricingFeature[];
   cta: string;
   color: string;
+  completionPeriod: string;
 }
 
 const PricingSection: React.FC = () => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+  const [billingCycle, setBillingCycle] = useState<'ghana' | 'international'>('ghana');
   const [animatedText, setAnimatedText] = useState('Pricing');
   const [animationIndex, setAnimationIndex] = useState(0);
   
@@ -46,94 +47,107 @@ const PricingSection: React.FC = () => {
     {
       id: 1,
       name: 'Basic',
-      description: 'Essential features for small businesses and startups',
+      description: 'Essential features for small businesses / startups',
       price: {
-        monthly: 49,
-        yearly: 39,
+        ghana: 1050,
+        international: 99,
       },
       featured: false,
       features: [
+
         { text: 'Responsive Website Design', included: true },
-        { text: '5 Pages Included', included: true },
+        { text: 'Free Domain', included: true },
+        { text: 'Free SSL Certificate', included: true },
+        { text: 'Free Hosting', included: true },
+        { text: '4 Pages Included', included: true },
         { text: 'Basic SEO Optimization', included: true },
         { text: 'Contact Form Integration', included: true },
-        { text: 'Social Media Integration', included: true },
-        { text: 'Content Management System', included: false },
+        { text: 'Social Media Integration', included: false },
         { text: 'E-commerce Functionality', included: false },
         { text: 'Custom Animations', included: false },
         { text: 'Priority Support', included: false },
       ],
       cta: 'Get Started',
       color: 'blue',
+      completionPeriod: '3 days',
     },
     {
       id: 2,
       name: 'Professional',
       description: 'Complete solution for growing businesses',
       price: {
-        monthly: 99,
-        yearly: 79,
+        ghana: 1499,
+        international: 140,
       },
       featured: true,
       features: [
         { text: 'Responsive Website Design', included: true },
-        { text: '10 Pages Included', included: true },
-        { text: 'Advanced SEO Optimization', included: true },
+        { text: 'Free Domain', included: true },
+        { text: 'Free SSL Certificate', included: true },
+        { text: 'Free Hosting', included: true },
+        { text: '7 Pages Included', included: true },
+        { text: 'Intermediate SEO Optimization', included: true },
         { text: 'Contact Form Integration', included: true },
         { text: 'Social Media Integration', included: true },
-        { text: 'Content Management System', included: true },
-        { text: 'E-commerce Functionality', included: true },
+        { text: 'E-commerce Functionality', included: false},
         { text: 'Custom Animations', included: false },
         { text: 'Priority Support', included: false },
       ],
       cta: 'Get Professional',
       color: 'teal',
+      completionPeriod: '1-2 weeks',
     },
     {
       id: 3,
       name: 'Business',
       description: 'Advanced features for established businesses',
       price: {
-        monthly: 149,
-        yearly: 119,
+        ghana: 2499,
+        international: 200,
       },
       featured: false,
       features: [
         { text: 'Responsive Website Design', included: true },
-        { text: '15 Pages Included', included: true },
+        { text: 'Free Domain', included: true },
+        { text: 'Free SSL Certificate', included: true },
+        { text: 'Free Hosting', included: true },
+        { text: '10 Pages Included', included: true },
         { text: 'Advanced SEO Optimization', included: true },
         { text: 'Contact Form Integration', included: true },
         { text: 'Social Media Integration', included: true },
-        { text: 'Content Management System', included: true },
         { text: 'E-commerce Functionality', included: true },
         { text: 'Custom Animations', included: true },
         { text: 'Priority Support', included: false },
       ],
       cta: 'Choose Business',
       color: 'purple',
+      completionPeriod: '2-4 weeks',
     },
     {
       id: 4,
       name: 'Enterprise',
       description: 'Custom solutions for large organizations',
       price: {
-        monthly: 249,
-        yearly: 199,
+        ghana: 4500,
+        international: 500,
       },
       featured: false,
       features: [
         { text: 'Responsive Website Design', included: true },
+        { text: 'Free Domain', included: true },
+        { text: 'Free SSL Certificate', included: true },
+        { text: 'Free Hosting', included: true },
         { text: 'Unlimited Pages', included: true },
         { text: 'Advanced SEO Optimization', included: true },
         { text: 'Contact Form Integration', included: true },
         { text: 'Social Media Integration', included: true },
-        { text: 'Content Management System', included: true },
         { text: 'E-commerce Functionality', included: true },
         { text: 'Custom Animations', included: true },
         { text: 'Priority Support', included: true },
       ],
       cta: 'Contact Sales',
       color: 'orange',
+      completionPeriod: '6-8 weeks',
     },
   ];
 
@@ -197,24 +211,24 @@ const PricingSection: React.FC = () => {
               <AnimatedReveal direction="up" delay={0.1}>
                 <div className="bg-white dark:bg-gray-800 rounded-full p-1 inline-flex shadow-md">
                   <button
-                    onClick={() => setBillingCycle('monthly')}
+                    onClick={() => setBillingCycle('ghana')}
                     className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                      billingCycle === 'monthly'
+                      billingCycle === 'ghana'
                         ? 'bg-blue-500 text-white'
                         : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                     }`}
                   >
-                    Monthly
+                    Ghana
                   </button>
                   <button
-                    onClick={() => setBillingCycle('yearly')}
+                    onClick={() => setBillingCycle('international')}
                     className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                      billingCycle === 'yearly'
+                      billingCycle === 'international'
                         ? 'bg-blue-500 text-white'
                         : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                     }`}
                   >
-                    Yearly <span className="text-xs font-bold text-green-500 ml-1">Save 20%</span>
+                    International
                   </button>
                 </div>
               </AnimatedReveal>
@@ -250,17 +264,14 @@ const PricingSection: React.FC = () => {
                     <div className="mt-6 mb-6">
                       <div className="flex items-end">
                         <span className={`text-4xl font-extrabold ${plan.featured ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
-                          ${billingCycle === 'monthly' ? plan.price.monthly : plan.price.yearly}
-                        </span>
-                        <span className={`ml-2 text-sm ${plan.featured ? 'text-white/70' : 'text-gray-500 dark:text-gray-400'}`}>
-                          /month
+                          {billingCycle === 'ghana' ? '₵' : '$'}{billingCycle === 'ghana' ? plan.price.ghana : plan.price.international}
                         </span>
                       </div>
-                      {billingCycle === 'yearly' && (
-                        <p className="text-sm text-green-500 font-medium mt-1">
-                          Billed annually
+                      <div className="mt-2">
+                        <p className={`text-sm ${plan.featured ? 'text-white/70' : 'text-gray-500 dark:text-gray-400'}`}>
+                          Completion time: {plan.completionPeriod}
                         </p>
-                      )}
+                      </div>
                     </div>
                     
                     <ul className="mt-6 space-y-4">

@@ -8,10 +8,11 @@ import Button from './Button';
 // 2. Create a service (Gmail, Outlook, etc.) and get your Service ID
 // 3. Create an email template with variables: {{from_name}}, {{from_email}}, {{message}}
 // 4. Get your Public Key from Account > API Keys
-const EMAILJS_SERVICE_ID = 'service_id'; // Replace with your actual EmailJS service ID
-const EMAILJS_TEMPLATE_ID = 'template_id'; // Replace with your actual EmailJS template ID
-const EMAILJS_PUBLIC_KEY = 'public_key'; // Replace with your actual EmailJS public key
+const EMAILJS_SERVICE_ID = 'service_poiokaf'; // Replace with your actual EmailJS service ID
+const EMAILJS_TEMPLATE_ID = 'template_irr0r5w'; // Replace with your actual EmailJS template ID
+const EMAILJS_PUBLIC_KEY = 'MkmhpGm4169pqUe7_'; // Replace with your actual EmailJS public key
 const RECIPIENT_EMAIL = 'amosfrimpong56@gmail.com';
+
 
 const ContactForm: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -133,7 +134,8 @@ const ContactForm: React.FC = () => {
       
       {formStatus === 'error' && (
         <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300">
-          There was an error sending your message. Please try again.
+          There was an error sending your message. Please try again, you can also reach us
+          through whatsapp.
         </div>
       )}
     </form>

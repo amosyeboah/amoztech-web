@@ -95,7 +95,7 @@ const Header: React.FC = () => {
         } md:hidden pt-24`}
       >
         <nav className="flex flex-col items-center space-y-8 p-4">
-          {['home', 'services', 'work', 'about', 'testimonials', 'contact'].map((item) => (
+          {['home', 'services', 'work','industries','pricing', 'about', 'testimonials', 'contact'].map((item) => (
             <button
               key={item}
               onClick={() => scrollToSection(item)}
