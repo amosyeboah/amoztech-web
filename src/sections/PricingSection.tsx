@@ -13,8 +13,8 @@ interface PricingPlan {
   name: string;
   description: string;
   price: {
-    ghana: number;
-    international: number;
+    ghana: number | string;
+    international: number | string;
   };
   featured: boolean;
   features: PricingFeature[];
@@ -76,7 +76,7 @@ const PricingSection: React.FC = () => {
       name: 'Professional',
       description: 'Complete solution for growing businesses',
       price: {
-        ghana: 1499,
+        ghana: 1799,
         international: 140,
       },
       featured: true,
@@ -102,8 +102,8 @@ const PricingSection: React.FC = () => {
       name: 'Business',
       description: 'Advanced features for established businesses',
       price: {
-        ghana: 2499,
-        international: 200,
+        ghana: 2799,
+        international: 220,
       },
       featured: false,
       features: [
@@ -128,8 +128,8 @@ const PricingSection: React.FC = () => {
       name: 'Enterprise',
       description: 'Custom solutions for large organizations',
       price: {
-        ghana: 4500,
-        international: 500,
+        ghana: " TBD",
+        international: " TBD",
       },
       featured: false,
       features: [
